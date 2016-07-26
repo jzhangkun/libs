@@ -1,0 +1,20 @@
+#!/usr/bin/expect
+
+# passing passphase
+set PHRASE1 [lindex $argv 0]
+set PHRASE2 [lindex $argv 1]
+
+# to start the command
+spawn "your-apache-startup-script"
+
+# expect for application passphrase
+expect "passphrase:"
+sleep 1
+send "$PHRASE1\r"
+
+# expect for ssl passphrase
+expect "pass phrase:"
+sleep 1
+send "$PHRASE2\r"
+
+expect "eof"
